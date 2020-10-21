@@ -21,6 +21,9 @@ The routing is defined like this:
 * ```/status/:statusCode``` : return an HTTP response with status code __statusCode__ and body ```{"message":"OK|KO"}```
 * ```/**/*``` : return an HTTP response with status code __200 OK__ and body ```{"message":"OK"}```
 
+Following query parameters are also supported:
+* ```?latencyInMs=60000``` : wait for the given period in milliseconds before responding.
+
 This service can be used to :
 * See very quickly what are the requests received and inspect their content.
 * Have a quick way to simulate specific cases with particular HTTP response codes.

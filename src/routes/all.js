@@ -1,12 +1,23 @@
 const debug = require('debug')('http');
 
 module.exports = {
-    all: function(req, res) {
+    all: function (req, res) {
         let httpCode = 200;
+        let latencyInMs = 0;
+
+        // Manage status code.
         if (req.params.statusCode) {
             httpCode = parseInt(req.params.statusCode, 10);
             if (isNaN(httpCode) || httpCode < 200 || httpCode > 599) {
                 httpCode = 400;
+            }
+        }
+
+        // Manage latency.
+        if (req.query.latencyInMs) {
+            latencyInMs = parseInt(req.query.latencyInMs, 10);
+            if (isNaN(latencyInMs) || latencyInMs < 0) {
+                latencyInMs = 0;
             }
         }
 
@@ -17,12 +28,25 @@ module.exports = {
         }
         debug('>>     Query  :', req.query);
         debug('>>     Body   :', req.body);
-        debug('< [ HTTP', httpCode, ']');
 
-        if (httpCode >= 200 && httpCode < 400) {
-            res.status(httpCode).send({ statusCode: httpCode, message: 'OK' });
+        if (latencyInMs > 0) {
+            debug('<< Waiting for timeout exhaust (ms): ', latencyInMs);
+
+            setTimeout(() => {
+                debug('< [ HTTP', httpCode, ']');
+                if (httpCode >= 200 && httpCode < 400) {
+                    res.status(httpCode).send({ statusCode: httpCode, message: 'OK' });
+                } else {
+                    res.status(httpCode).send({ statusCode: httpCode, message: 'KO' });
+                }
+            }, latencyInMs);
         } else {
-            res.status(httpCode).send({ statusCode: httpCode, message: 'KO' });
+            debug('< [ HTTP', httpCode, ']');
+            if (httpCode >= 200 && httpCode < 400) {
+                res.status(httpCode).send({ statusCode: httpCode, message: 'OK' });
+            } else {
+                res.status(httpCode).send({ statusCode: httpCode, message: 'KO' });
+            }
         }
-    }
+    },
 };
