@@ -1,6 +1,6 @@
 {
     "name": "http-reqtrace",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "A simple NodeJS application to view HTTP request details.",
     "repository": "https://github.com/julb/http-reqtrace.git",
     "main": "src/index.js",
@@ -8,7 +8,7 @@
     "license": "MIT",
     "dependencies": {
         "body-parser": "^1.19.0",
-        "debug": "^4.1.1",
+        "debug": "^4.2.0",
         "express": "^4.17.1"
     },
     "scripts": {
@@ -20,6 +20,6 @@
     ],
     "devDependencies": {
         "chai": "^4.2.0",
-        "mocha": "^7.1.1"
+        "mocha": "^8.2.0"
     }
 }
