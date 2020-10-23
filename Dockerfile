@@ -7,8 +7,6 @@ COPY src /app/src
 
 RUN npm install
 
-EXPOSE 80
-
 ENV DEBUG=http
 
 ENTRYPOINT ["node", "src/index.js"]
