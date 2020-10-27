@@ -1,9 +1,10 @@
 [![npm version](https://img.shields.io/npm/v/http-reqtrace.svg)](https://www.npmjs.com/http-reqtrace)
 [![license](https://img.shields.io/npm/l/http-reqtrace.svg)](https://www.npmjs.com/http-reqtrace)
 [![downloads](https://img.shields.io/npm/dm/http-reqtrace.svg)](https://www.npmjs.com/http-reqtrace)
-[![docker-build-status](https://img.shields.io/docker/build/julb/http-reqtrace.svg)](https://hub.docker.com/r/julb/http-reqtrace)
-[![docker-automated-build](https://img.shields.io/docker/automated/julb/http-reqtrace.svg)](https://hub.docker.com/r/julb/http-reqtrace)
+[![docker-image-version](https://img.shields.io/docker/v/julb/http-reqtrace.svg?sort=semver)](https://hub.docker.com/r/julb/http-reqtrace)
+[![docker-image-size](https://img.shields.io/docker/image-size/julb/http-reqtrace.svg?sort=semver)](https://hub.docker.com/r/julb/http-reqtrace)
 [![docker-pulls](https://img.shields.io/docker/pulls/julb/http-reqtrace.svg)](https://hub.docker.com/r/julb/http-reqtrace)
+
 
 # http-reqtrace
 
@@ -21,6 +22,7 @@ The routing is defined like this:
 
 -   `/status/:statusCode` : return an HTTP response with status code **statusCode** and body `{"message":"OK|KO"}`
 -   `/**/*` : return an HTTP response with status code **200 OK** and body `{"message":"OK"}`
+-   `/metrics` : return Prometheus metrics regarding HTTP requests
 
 Following query parameters are also supported:
 
