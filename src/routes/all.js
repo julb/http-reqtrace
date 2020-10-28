@@ -22,18 +22,18 @@ module.exports = {
         }
 
         const url = req.protocol + '://' + req.hostname + req.originalUrl;
-        debug('> [', req.method, '] HTTP/', req.httpVersion, ' ', url);
+        debug('> [%s] HTTP/%s %s', req.method, req.httpVersion, url);
         for (const header in req.headers) {
-            debug('>>     Header : ', header, ':', req.get(header));
+            debug('>>     Header : %s : %s', header, req.get(header));
         }
-        debug('>>     Query  :', req.query);
-        debug('>>     Body   :', req.body);
+        debug('>>     Query  : %O', req.query);
+        debug('>>     Body   : %O', req.body);
 
         if (latencyInMs > 0) {
-            debug('<< Waiting for timeout exhaust (ms): ', latencyInMs);
+            debug('<< Waiting for timeout exhaust (ms): %s', latencyInMs);
 
             setTimeout(() => {
-                debug('< [ HTTP', httpCode, ']');
+                debug('< [ HTTP %s ]', httpCode);
                 if (httpCode >= 200 && httpCode < 400) {
                     res.status(httpCode).send({ statusCode: httpCode, message: 'OK' });
                 } else {
@@ -41,7 +41,7 @@ module.exports = {
                 }
             }, latencyInMs);
         } else {
-            debug('< [ HTTP', httpCode, ']');
+            debug('< [ HTTP %s ]', httpCode);
             if (httpCode >= 200 && httpCode < 400) {
                 res.status(httpCode).send({ statusCode: httpCode, message: 'OK' });
             } else {
