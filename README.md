@@ -1,10 +1,8 @@
-[![npm version](https://img.shields.io/npm/v/http-reqtrace.svg)](https://www.npmjs.com/http-reqtrace)
+[![docker-image-version](https://img.shields.io/docker/v/julb/http-reqtrace.svg?sort=semver)](https://hub.docker.com/r/julb/http-reqtrace)
 [![license](https://img.shields.io/npm/l/http-reqtrace.svg)](https://www.npmjs.com/http-reqtrace)
 [![downloads](https://img.shields.io/npm/dm/http-reqtrace.svg)](https://www.npmjs.com/http-reqtrace)
-[![docker-image-version](https://img.shields.io/docker/v/julb/http-reqtrace.svg?sort=semver)](https://hub.docker.com/r/julb/http-reqtrace)
 [![docker-image-size](https://img.shields.io/docker/image-size/julb/http-reqtrace.svg?sort=semver)](https://hub.docker.com/r/julb/http-reqtrace)
 [![docker-pulls](https://img.shields.io/docker/pulls/julb/http-reqtrace.svg)](https://hub.docker.com/r/julb/http-reqtrace)
-
 
 # http-reqtrace
 
@@ -12,38 +10,38 @@
 
 The application starts a Web server which logs details of all incoming HTTP requests such as:
 
--   HTTP Method & URL
--   Query params
--   Headers
--   Body
+- HTTP Method & URL
+- Query params
+- Headers
+- Body
 
 The application accepts all HTTP methods and URIs.
 The routing is defined like this:
 
--   `/status/:statusCode` : return an HTTP response with status code **statusCode** and body `{"message":"OK|KO"}`
--   `/**/*` : return an HTTP response with status code **200 OK** and body `{"message":"OK"}`
--   `/metrics` : return Prometheus metrics regarding HTTP requests
+- `/status/:statusCode` : return an HTTP response with status code **statusCode** and body `{"message":"OK|KO"}`
+- `/**/*` : return an HTTP response with status code **200 OK** and body `{"message":"OK"}`
+- `/metrics` : return Prometheus metrics regarding HTTP requests
 
 Following query parameters are also supported:
 
--   `?latencyInMs=60000` : wait for the given period in milliseconds before responding.
+- `?latencyInMs=60000` : wait for the given period in milliseconds before responding. This time cannot exceed 5 minuts.
 
 This service can be used to :
 
--   See very quickly what are the requests received and inspect their content.
--   Have a quick way to simulate specific cases with particular HTTP response codes.
+- See very quickly what are the requests received and inspect their content.
+- Have a quick way to simulate specific cases with particular HTTP response codes.
 
 ## How to use
 
 ### Starts the service
 
--   Run container as root:
+- Run container as root:
 
 ```bash
 $ docker run -ti --name http-reqtrace -p 80:80 julb/http-reqtrace:latest
 ```
 
--   Run container as non-root:
+- Run container as non-root:
 
 ```bash
 $ docker run -ti --name http-reqtrace -p 80:8080 -e PORT=8080 -u 65534:65534 julb/http-reqtrace:latest
@@ -59,14 +57,15 @@ $ curl http://localhost/context/uri?param1=value1&param2=value2 -H "Authorizatio
 ```
 
 ```bash
-http > [ GET ] HTTP/ 1.1   http://localhost/context/uri?param1=value1&param2=value2
-http >>     Header :  host : localhost
-http >>     Header :  user-agent : curl/7.54.0
-http >>     Header :  accept : */*
-http >>     Header :  authorization : Bearer jwt
-http >>     Query  :  { param1: 'value1', param2: 'value2' }
-http >>     Body   :  {}
-http < [ HTTP 200 ]
+INFO in app: > [GET] HTTP/1.1 http://localhost/context/uri?param1=value1&param2=value2
+INFO in app: >>     Header : Host : localhost
+INFO in app: >>     Header : User-Agent : curl/7.54.0
+INFO in app: >>     Header : Accept : */*
+INFO in app: >>     Header : Authorization : Bearer jwt
+INFO in app: >>     Query  : param1 : value1
+INFO in app: >>     Query  : param2 : value2
+INFO in app: >>     Body   : b''
+INFO in app: < [ HTTP 200 ]
 ```
 
 ### Getting specific HTTP responses status codes
@@ -80,22 +79,20 @@ $ curl http://localhost/status/500 -H "Authorization: Bearer jwt"
 ```
 
 ```bash
-http > [ GET ] HTTP/ 1.1   http://localhost/status/404
-http >>     Header :  host : localhost
-http >>     Header :  user-agent : curl/7.54.0
-http >>     Header :  accept : */*
-http >>     Header :  authorization : Bearer jwt
-http >>     Query  : {}
-http >>     Body   : {}
-http < [ HTTP 404 ]
-http > [ GET ] HTTP/ 1.1   http://localhost/status/500
-http >>     Header :  host : localhost
-http >>     Header :  user-agent : curl/7.54.0
-http >>     Header :  accept : */*
-http >>     Header :  authorization : Bearer jwt
-http >>     Query  : {}
-http >>     Body   : {}
-http < [ HTTP 500 ]
+INFO in app: > [GET] HTTP/1.1 http://localhost/status/404
+INFO in app: >>     Header : Host : localhost
+INFO in app: >>     Header : User-Agent : curl/7.54.0
+INFO in app: >>     Header : Accept : */*
+INFO in app: >>     Header : Authorization : Bearer jwt
+INFO in app: >>     Body   : b''
+INFO in app: < [ HTTP 404 ]
+INFO in app: > [GET] HTTP/1.1 http://localhost/status/500
+INFO in app: >>     Header : Host : localhost
+INFO in app: >>     Header : User-Agent : curl/7.54.0
+INFO in app: >>     Header : Accept : */*
+INFO in app: >>     Header : Authorization : Bearer jwt
+INFO in app: >>     Body   : b''
+INFO in app: < [ HTTP 500 ]
 ```
 
 ### Simulate latency
@@ -106,12 +103,12 @@ $ curl http://localhost/status/504?latencyInMs=60000
 ```
 
 ```bash
-http > [ GET ] HTTP/ 1.1   http://localhost/status/504
-http >>     Header :  host : localhost
-http >>     Header :  user-agent : curl/7.54.0
-http >>     Header :  accept : */*
-http >>     Query  : {}
-http >>     Body   : {}
-<60s waiting...>
-http < [ HTTP 504 ]
+INFO in app: > [GET] HTTP/1.1 http://localhost/status/504?latencyInMs=60000
+INFO in app: >>     Header : Host : localhost
+INFO in app: >>     Header : User-Agent : curl/7.54.0
+INFO in app: >>     Header : Accept : */*
+INFO in app: >>     Query  : latencyInMs : 60000
+INFO in app: >>     Body   : b''
+INFO in app: << Waiting for timeout exhaust: 60000ms.
+INFO in app: < [ HTTP 504 ]
 ```
