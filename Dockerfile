@@ -1,13 +1,15 @@
-FROM node:14-alpine
+FROM python:3.8-alpine
+
+ENV PORT=8080
+
+RUN mkdir /app
 
 WORKDIR /app
 
-COPY package.json /app
-COPY src /app/src
+ADD scripts/entrypoint.sh /app
 
-RUN npm install
+ARG PACKAGE_VERSION
 
-ENV DEBUG=http
-ENV DEBUG_DEPTH=10
+RUN pip --no-cache-dir install http-reqtrace==$PACKAGE_VERSION
 
-ENTRYPOINT ["node", "src/index.js"]
+CMD ["./entrypoint.sh"]
