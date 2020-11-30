@@ -36,13 +36,7 @@ This service can be used to :
 
 ### Starts the service
 
-- Run container as root:
-
-```bash
-$ docker run -ti --name http-reqtrace -p 80:80 julb/http-reqtrace:latest
-```
-
-- Run container as non-root:
+- Run container:
 
 ```bash
 $ docker run -ti --name http-reqtrace -p 80:8080 -e PORT=8080 -u 65534:65534 julb/http-reqtrace:latest
