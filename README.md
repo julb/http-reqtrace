@@ -1,6 +1,7 @@
+![PyPI](https://img.shields.io/pypi/v/http-reqtrace)
+![PyPI - License](https://img.shields.io/pypi/l/http-reqtrace)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/http-reqtrace)
 [![docker-image-version](https://img.shields.io/docker/v/julb/http-reqtrace.svg?sort=semver)](https://hub.docker.com/r/julb/http-reqtrace)
-[![license](https://img.shields.io/npm/l/http-reqtrace.svg)](https://www.npmjs.com/http-reqtrace)
-[![downloads](https://img.shields.io/npm/dm/http-reqtrace.svg)](https://www.npmjs.com/http-reqtrace)
 [![docker-image-size](https://img.shields.io/docker/image-size/julb/http-reqtrace.svg?sort=semver)](https://hub.docker.com/r/julb/http-reqtrace)
 [![docker-pulls](https://img.shields.io/docker/pulls/julb/http-reqtrace.svg)](https://hub.docker.com/r/julb/http-reqtrace)
 

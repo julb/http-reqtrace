@@ -4,7 +4,7 @@
 CURRENT_DIR := $(shell pwd)
 SRC_DIR := $(CURRENT_DIR)/http_reqtrace
 
-.PHONY: help format lint install.dependencies install.dependencies.run install.dependencies.dev version.set
+.PHONY: help format lint install.dependencies version.get
 
 #help:	@ List available tasks on this project
 help:
