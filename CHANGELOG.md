@@ -1,80 +1,56 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [1.1.0](https://github.com/julb/http-reqtrace/tree/1.1.0) (2020-11-29)
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.9...1.1.0)
 
-## [Unreleased]
+**Closed issues:**
 
-## [1.1.0] - 2020-11-29
+- Migrate repository to Python [\#1](https://github.com/julb/http-reqtrace/issues/1)
 
-### Changed
+**Merged pull requests:**
 
--   Use python image with flask to run the container.
+- Migrate from NodeJS to Python3 \(using Flask\) [\#2](https://github.com/julb/http-reqtrace/pull/2) ([julb](https://github.com/julb))
 
-## [1.0.9] - 2020-10-28
+## [1.0.9](https://github.com/julb/http-reqtrace/tree/1.0.9) (2020-10-28)
 
-### Fixed
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.8...1.0.9)
 
--   Fix debug formatting to log body up to 10-element depth.
+## [1.0.8](https://github.com/julb/http-reqtrace/tree/1.0.8) (2020-10-27)
 
-## [1.0.8] - 2020-10-27
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.7...1.0.8)
 
-### Added
+## [1.0.7](https://github.com/julb/http-reqtrace/tree/1.0.7) (2020-10-23)
 
--   Add `/metrics` endpoint to return prometheus metrics.
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.6...1.0.7)
 
-## [1.0.7] - 2020-10-23
+## [1.0.6](https://github.com/julb/http-reqtrace/tree/1.0.6) (2020-10-22)
 
-### Added
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.5...1.0.6)
 
--   Introduce `PORT` environment variable to customize listening port.
--   Create CHANGELOG.md file.
--   Update README.md with new examples.
+## [1.0.5](https://github.com/julb/http-reqtrace/tree/1.0.5) (2020-10-21)
 
-## [1.0.6] - 2020-10-22
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.4...1.0.5)
 
-### Changed
+## [1.0.4](https://github.com/julb/http-reqtrace/tree/1.0.4) (2020-10-21)
 
--   Upgrade dependency `debug` to 4.2
--   Upgrade dependency `mocha` to 8.2
--   Upgrade runtime `node` to 14
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.3...1.0.4)
 
-## [1.0.5] - 2020-10-21
+## [1.0.3](https://github.com/julb/http-reqtrace/tree/1.0.3) (2020-04-03)
 
-### Fixed
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.2...1.0.3)
 
--   Realign package.json and package-lock.json version.
+## [1.0.2](https://github.com/julb/http-reqtrace/tree/1.0.2) (2020-04-02)
 
-## [1.0.4] - 2020-10-21
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.1...1.0.2)
 
-### Added
+## [1.0.1](https://github.com/julb/http-reqtrace/tree/1.0.1) (2020-04-02)
 
--   Introduce `latencyInMs` support to simulate latency easily.
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/1.0.0...1.0.1)
 
-## [1.0.3] - 2020-04-03
+## [1.0.0](https://github.com/julb/http-reqtrace/tree/1.0.0) (2019-02-02)
 
-### Changed
+[Full Changelog](https://github.com/julb/http-reqtrace/compare/68d7803157bc58b2ef06542e45a68dd73fdc252c...1.0.0)
 
--   Upgrade dependency `body-parser` to 1.19
--   Upgrade dependency `express` to 4.17
--   Upgrade dependency `mocha` to 7.1
 
-## [1.0.2] - 2020-04-02
 
-### Added
-
--   Add docker push as part of Gitlab CI/CD pipeline
-
-## [1.0.1] - 2020-04-02
-
-### Added
-
--   Integrate project into Gitlab CI/CD
-
-## [1.0.0] - 2019-02-02
-
-### Added
-
--   Initial version of the project.
