@@ -82,10 +82,10 @@ jobs:
       with:
         password: ${{ secrets.PIPY_TOKEN }}
         
-    - name: Sleep for 60 seconds for Pypi to refresh
+    - name: Sleep for 90s for Pypi to refresh
       uses: jakejarvis/wait-action@master
       with:
-        time: '60s'
+        time: '90s'
   
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
